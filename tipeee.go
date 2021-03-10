@@ -3,6 +3,7 @@ package tipeee
 import (
 	"crypto/tls"
 	"net/http"
+	"time"
 )
 
 // ClientAPI is a structure that can be used to
@@ -27,5 +28,5 @@ func (c *Client) initHttpClient() {
 	transport := &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 	}
-	c.httpClient = &http.Client{Transport: transport}
+	c.httpClient = &http.Client{Transport: transport, Timeout: time.Second * 30}
 }
